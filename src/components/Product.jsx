@@ -1,22 +1,21 @@
-export default function Product({
-  id,
-  image,
-  title,
-  price,
-  description,
-  onAddToCart,
-}) {
+import { CartContext } from "../store/Shoping-cart-context";
+import { useContext } from "react";
+
+export default function Product({ id, image, title, price, description }) {
+  // here i m destructured addToCart function from cartContext
+  const { addToCart } = useContext(CartContext);
+
   return (
     <article className="product">
       <img src={image} alt={title} />
       <div className="product-content">
         <div>
           <h3>{title}</h3>
-          <p className='product-price'>${price}</p>
+          <p className="product-price">${price}</p>
           <p>{description}</p>
         </div>
-        <p className='product-actions'>
-          <button onClick={() => onAddToCart(id)}>Add to Cart</button>
+        <p className="product-actions">
+          <button onClick={() => addToCart(id)}>Add to Cart</button>
         </p>
       </div>
     </article>
